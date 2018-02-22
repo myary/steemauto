@@ -1,21 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" >
 
-	<div class="content"> <!-- Content -->
-	<div class="row" style="margin:0 !important">
-	<div class="col-md-3"></div>
-	<div style="" class="col-md-6">
-	<div class="card">
-	<div class="content">
-	<h3>Welcome <? echo $name; ?>,</h3><br>
-	Here you can add a Post to published in the future.
+  <head>
+  
+  
+	<link rel='stylesheet prefetch' href='css/steemclient.css'>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="steemclient text editor">
+    <meta name="author" content="@vitusc">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+     <title>Post Article</title>
+
+  </head>
+
+	<div align="center">
+	<h3>Welcome <? echo $name; ?>,</h3><br>
+	<font size="4">Here you can add a Post to published in the future.</font>
+	</div>
+	<div id="head">
 	<form style="display:;" id="post" onsubmit="post(); return false;">
-	<label for="title">Title:</label>
-	<input id="title" placeholder="Post Title" name="title" type="text" class="form-control" required>
-	<label for="content">Content: (You can Write in Steemit.com and Copy Markdown or Raw Html Here.)</label>
-	<textarea id="content" placeholder="Post Content" name="content" type="text" class="form-control" required></textarea>
-	<label for="tags">Tags:</label>
-	<input id="tags" placeholder="tag1 tag2 tag3 tag4 tag5" name="tags" type="text" class="form-control" required>
-	<label style="margin-top:7px;" for="date">Publish After <select id="date" name="date" required>
+	<label for="title"><font size="4">Title:</font></label>
+	<input id="title" placeholder="Post Title" name="title" type="text" required>
+	<label for="tags"><font size="4">Tags:</font></label>
+	<input id="tags" placeholder="tag1 tag2 tag3 tag4 tag5" name="tags" type="text" required>
+	<label style="margin-top:7px;" for="date"><font size="4">Publish After </font><select id="date" name="date" required>
 	<option value="1">1</option> 
 	<option value="2">2</option> 
 	<option value="3">3</option> 
@@ -116,8 +130,11 @@
 	<option value="98">98</option> 
 	<option value="99">99</option> 
 	<option value="100">100</option>
-	</select> Hours.</label><br>
-	<input style="margin-top:10px;"value="Submit" type="submit" class="btn btn-primary">
+	</select><font size="4"> Hours.</font></label>
+	<input style="margin-left:5%;" value="Submit" type="submit" class="btn btn-success"><br><br>
+		<label for="content">Content:</label>
+	
+	</div>
 	</form>
 	<br>
 	<div id="result"></div>
@@ -126,89 +143,29 @@
 	</div>
 	<div class="col-md-3"></div>
 	</div>
-	<div class="row" style="margin:0 !important">
-	<div style="" class="col-md-12">
-	<?
-	date_default_timezone_set('UTC');
-	function after($x){
-		$sec = $x - strtotime('now');
-		if($sec > 60){
-			if($sec > 3600){
-				if($sec > 86400){
-					$ago= round($sec/86400).' Days';
-				}else{
-					$ago= round($sec/3600).' Hours';
-				}
-			}else{
-				$ago= round($sec/60).' Minutes';
-			}
-		}else{
-			$ago= round($sec).' Seconds';
-		}
-		return $ago;
-	}
-	$result = $conn->query("SELECT EXISTS(SELECT * FROM `posts` WHERE `user`='$name')");
-	foreach($result as $x){
-		foreach($x as $x){}
-	}
-	if($x == 1){
-	?>
-	<div class="card">
-	<div class="content">
-	<h3 style=" padding-bottom:10px;">Scheduled Posts:</h3>
-	<div style="max-height:600px; overflow:auto;" class="table-responsive-vertical shadow-z-1">
-	  <!-- Table starts here -->
-	  
-	<table id="table" class="table table-hover table-mc-light-blue">
-	  <thead>
-		<tr>
-		  <th>#</th>
-		  <th>Title</th>
-		  <th>Content</th>
-		  <th>Publish Time</th>
-		  <th>Action</th>
-		</tr>
-	  </thead>
-	  <tbody>
-	<?
-	$i = 1;
-	$result = $conn->query("SELECT * FROM `posts` WHERE `user`='$name' ORDER BY `posts`.`date` ASC");
-		foreach($result as $x){
-		$now = strtotime('now');
-	?>
-			<tr class="tr2">
-				<td data-title="ID"><? echo $i; ?></td>
-				<td data-title="Name"><? echo $x['title']; ?></td>
-				<td data-title="Status"><textarea disabled="" height="50px"><? echo $x['content']; ?></textarea></td>
-				<td data-title="Status">After <? echo after($x['date']); ?></td>
-				<td data-title="Status"><button class="btn btn-danger" onclick="if(confirm('Are You Sure?')) deletepost('<? echo $x['id']; ?>');">DELETE</button></td>
-			</tr>
+  
 
-			<?
-			$i += 1;
-		}
-		?>
-			  </tbody>
-		</table>
-		</div>
-		
-		</div>
-		</div>
-		
-		<?
+    <div id="i-main-block">
+        <div id="display">
+  
 
-	}
-?>
 
-		
-		
-<script>
-document.getElementById('date').value =1;
-document.getElementById('title').value="";
-document.getElementById('content').value='';
-document.getElementById('tags').value='';
-</script>
+      
 
-</div>
-</div>
-</div> <!-- /Content -->
+       
+      </div>
+
+    </div>
+
+  </body>
+
+
+
+
+    <script src='http://fb.me/react-15.0.1.min.js'></script>
+<script src='http://fb.me/react-dom-15.0.1.min.js'></script>
+<script src='js/guide.js'></script>
+    <script  src="js/index.js"></script>
+
+
+</html>
