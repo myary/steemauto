@@ -34,4 +34,4 @@ var RawInput = React.createClass({
     }
 });
 
-ReactDOM.render(React.createElement(DisplayContainer, null), document.getElementById("display"));
+ReactDOM.render(React.createElement(DisplayContainer, null), document.getElementById("content"));
